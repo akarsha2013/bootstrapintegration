@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"   xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+</head>
+<body>
+<h1>Products</h1>
+<p th:text="'The product name is :'+${appname}"></p>
+   <ul>
+       <li>
+         <!--  Product1-->
+           <a th:href="@{/product/data engineering tool/details}">Product 1</a>
+       </li>
+       <li>
+          <!-- Product2-->
+           <a th:href="@{/product/campaign management/details}">Product 2</a>
+       </li>
+       <li>
+        <!--   Product3-->
+           <a th:href="@{/product/prescription management/details}">Product 3</a>
+       </li>
+       <div>
+           <table border="1">
+               <tr>
+                   <th>Name</th>
+                   <th>Price</th>
+                   <th>Specs</th>
+               </tr>
+               <tr th:each="product:   ${products}">
+                   <td th:text="${product.name}"></td>
+                   <td th:text="${product.price}"></td>
+                   <td th:text="${#strings.listJoin(product.specs,',')}"></td>   <!--as per the document-->
+               </tr>
+            <!--   <tr>
+                   <td>Oneplus 13</td>
+                   <td>35000.00</td>
+                   <td>5MP camera,4GB Ram,64GB Storage</td>
+               </tr>-->
+           </table>
+       </div>
+
+       <div>
+           <a th:href="@{/home}">Back</a>
+       </div>
+
+   </ul>
+</body>
+</html>

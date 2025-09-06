@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+</head>
+<body>
+<h1>Services</h1>
+<div>
+    <a th:href="@{/home}">Back</a>
+</div>
+    <div>
+        <ul th:each="service: ${services}">
+            <li th:text="${service}"></li>
+           <!-- <li>Android app development</li>
+            <li>ios app development</li>
+            <li>web app development</li>
+            <li>web design</li>
+            <li>UI/UX development</li>-->
+        </ul>
+    </div>
+</body>
+</html>

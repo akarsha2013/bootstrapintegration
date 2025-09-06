@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+</head>
+<body>
+<h1>Contact Us</h1>
+</body>
+  <div>
+      <form th:action="@{/contactprocess}" method="post" th:object="${contact}">
+
+          <!--just for grouping we will use div tag-->
+         <div>
+             <label for="fullname">Full Name</label>
+             <input type="text" name="fullname" id="fullname" required="true" th:field="*{fullname}">
+         </div>
+          <div>
+              <label for="country">Select Country</label>
+              <select name="country" id="country"  required="true" th:field="*{country}">
+               <option value="">--Select Country--</option>
+                  <!--these are are hardcoded value
+                   <option value="australia">Australia</option>
+                  <option value="canada">Canada</option>
+                  <option value="india">India</option>
+                  <option value="south africa">South africa</option>-->
+                  <option th:each="country: ${countries}" th:value="${country.key}" th:text="${country.value}"></option>
+              </select>
+          </div>
+          <div>
+              <P>Select your interests</P>
+              <div th:each="interest: ${interests}">
+                  <input th:type="checkbox" th:id="${interest.key}" th:value="${interest.key}" th:field="*{interests}">
+                  <label th:for="${interest.key}" th:text="${interest.value}"></label>
+              </div>
+            <!--  <div>
+                  <input type="checkbox" id="cooking" value="cooking" th:field="*{interests}">
+                  <label for="cooking">Cooking</label>
+              </div>
+              <div>
+                  <input type="checkbox" id="reading" value="reading"  th:field="*{interests}">
+                  <label for="reading">Reading</label>
+              </div>-->
+          </div>
+          <div >
+              <p>Select your gender</p>
+          <div th:each="gender:  ${genderOption}">
+              <input type="radio" th:id="${gender.key}" th:value="${gender.key}" th:field="*{gender}">
+              <label th:for="${gender.key}" th:text="${gender.value}"></label>
+          </div>
+              <!--<div>
+                 <input type="radio" id="female" value="f" th:field="*{gender}">
+                 <label for="female">Female</label>
+             </div>-->
+
+             </div>
+             <input type="submit" value="submit"/>
+
+         </form>
+     </div>
+   <!--<div th:if="${fullname}">-->
+<div th:if="${data !=null}">
+    Full name:<span th:text="${data.fullname}"></span>
+    <br>
+    Country:<span th:text="${data.country}"></span>
+    <br>
+    Interests:<span th:text="${data.interests}"></span>
+    <br>
+    Gender:<span th:text="${data.gender}"></span>
+
+
+
+</div>
+<div>
+    <a th:href="@{/home}">Back</a>
+</div>
+
+</html>
